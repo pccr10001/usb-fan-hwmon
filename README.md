@@ -66,6 +66,28 @@ A native Linux Kernel Module (`usb_fan_hwmon`) is included to expose the fans vi
 
 ### Compilation & Installation
 
+#### Option 1: DKMS (Recommended)
+
+Dynamic Kernel Module Support ensures the driver is automatically rebuilt when you update your kernel.
+
+1.  Current directory should be project root.
+2.  Copy driver to source tree:
+    ```bash
+    sudo cp -R linux_driver /usr/src/usb-fan-hwmon-0.1
+    ```
+3.  Add, Build, and Install via DKMS:
+    ```bash
+    sudo dkms add -m usb-fan-hwmon -v 0.1
+    sudo dkms build -m usb-fan-hwmon -v 0.1
+    sudo dkms install -m usb-fan-hwmon -v 0.1
+    ```
+4.  Load the module:
+    ```bash
+    sudo modprobe usb-fan-hwmon
+    ```
+
+#### Option 2: Manual Build
+
 ```bash
 cd linux_driver
 make
